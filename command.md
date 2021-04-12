@@ -10,3 +10,5 @@ pip install whitenoise
 
 python manage.py collectstatic
 pip freeze > requirements.txt
+
+git remote add origin <Remote url>
