@@ -24,13 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-gbz*0k-6ssz4b*r77sp&w2h=j!-8fg*l%3%9_+u=b)l7aj-+@w'
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-gbz*0k-6ssz4b*r77sp&w2h=j!-8fg*l%3%9_+u=b)l7aj-+@w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
+DEBUG = True
+
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(',')
 
 # Application definition
 
@@ -41,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'crispy_forms',
+
+    'personal',
+    'blog',
+    'greece',
 ]
 
 MIDDLEWARE = [
@@ -121,12 +126,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
+STATIC_ROOT = Path(BASE_DIR).joinpath('static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [Path(BASE_DIR).joinpath("static")]
+MEDIA_URL = '/images/'
+STATICFILES_DIRS = [
+    BASE_DIR / "staticfiles",
+    '/var/www/static/',
+]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

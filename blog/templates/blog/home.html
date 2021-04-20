@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>blog home page</h1>
+    {% for post in posts %}
+        <article class="media content-section">
+            <div class="article-metadata">
+                {{post.author}}
+                <small class="text-muted">{{ post.date_posted | date}}</small>
+            </div>
+            <div class="media-body">
+                <h2> <a class="article-title">{{ post.title }}</a></h2>
+                <p class="article-content">
+                    {{ post.content }}
+                </p>
+            </div>
+        </article>
+     <div class="content-section">
+            <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form | crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Post it</button>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
+{% endblock content %}

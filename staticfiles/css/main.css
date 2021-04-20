@@ -1,0 +1,15 @@
+h3 {
+    color: rgb(190, 16, 16);
+}
+
+.profile-wrapper{
+    text-align: center;
+}
+body {
+    background-color: #f8f8f8;
+    margin: auto;
+    margin-top: 10px;
+}
+.card {
+    margin: 10px;
+}
